@@ -31,16 +31,17 @@ printer      = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
 # Called when button is briefly tapped.  Invokes time/temperature script.
 def tap():
-  GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
-  subprocess.call(["python", "timetemp.py"])
-  GPIO.output(ledPin, GPIO.LOW)
+  # GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
+  # subprocess.call(["python", "timetemp.py"])
+  # GPIO.output(ledPin, GPIO.LOW)
 
 
 # Called when button is held down.  Prints image, invokes shutdown process.
 def hold():
-  GPIO.output(ledPin, GPIO.HIGH)
-  printer.printImage(Image.open('gfx/goodbye.png'), True)
-  printer.feed(3)
+  # GPIO.output(ledPin, GPIO.HIGH)
+  # printer.printImage(Image.open('gfx/goodbye.png'), True)
+  # printer.feed(3)
+  printer.print('Going to sleep now.')
   subprocess.call("sync")
   subprocess.call(["shutdown", "-h", "now"])
   GPIO.output(ledPin, GPIO.LOW)
@@ -59,10 +60,10 @@ def interval():
 # Called once per day (6:30am by default).
 # Invokes weather forecast and sudoku-gfx scripts.
 def daily():
-  GPIO.output(ledPin, GPIO.HIGH)
-  subprocess.call(["python", "forecast.py"])
-  subprocess.call(["python", "sudoku-gfx.py"])
-  GPIO.output(ledPin, GPIO.LOW)
+  # GPIO.output(ledPin, GPIO.HIGH)
+  # subprocess.call(["python", "forecast.py"])
+  # subprocess.call(["python", "sudoku-gfx.py"])
+  # GPIO.output(ledPin, GPIO.LOW)
 
 
 # Initialization
@@ -97,7 +98,8 @@ except:
 	exit(0)
 
 # Print greeting image
-printer.printImage(Image.open('gfx/hello.png'), True)
+# printer.printImage(Image.open('gfx/hello.png'), True)
+printer.print('Hello World.')
 printer.feed(3)
 GPIO.output(ledPin, GPIO.LOW)
 
