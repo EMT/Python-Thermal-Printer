@@ -106,8 +106,12 @@ maxId = data['search_metadata']['max_id_str']
 for tweet in data['statuses']:
 
   printer.inverseOn()
-  printer.print(' ' + '{:<31}'.format(tweet['user']['screen_name']))
+  printer.doubleHeightOn()
+  printer.justify('C')
+  printer.print(' ' + '{:<31}'.format(tweet['user']['screen_name']) + ':')
   printer.inverseOff()
+  printer.doubleHeightOff()
+  printer.justify('L')
 
   printer.underlineOn()
   printer.print('{:<32}'.format(tweet['created_at']))
