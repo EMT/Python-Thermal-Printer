@@ -32,7 +32,9 @@ printer      = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 # Called when button is briefly tapped.  Invokes time/temperature script.
 def tap():
   # GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
-  # subprocess.call(["python", "timetemp.py"])
+  p = subprocess.Popen(["python", "twitter.py", str(lastId)],
+    stdout=subprocess.PIPE)
+  return p.communicate()[0] # Script pipes back lastId, returned to main
   # GPIO.output(ledPin, GPIO.LOW)
 
 
@@ -59,7 +61,7 @@ def interval():
 
 # Called once per day (6:30am by default).
 # Invokes weather forecast and sudoku-gfx scripts.
-def daily():
+# def daily():
   # GPIO.output(ledPin, GPIO.HIGH)
   # subprocess.call(["python", "forecast.py"])
   # subprocess.call(["python", "sudoku-gfx.py"])
