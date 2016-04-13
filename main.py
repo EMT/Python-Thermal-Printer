@@ -154,7 +154,7 @@ while(True):
   l = time.localtime()
   if (60 * l.tm_hour + l.tm_min) > (60 * 6 + 30):
     if dailyFlag == False:
-      daily()
+      # daily()
       dailyFlag = True
   else:
     dailyFlag = False  # Reset daily trigger
