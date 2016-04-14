@@ -107,7 +107,7 @@ for tweet in data['statuses']:
 
   printer.doubleHeightOn()
   printer.justify('C')
-  printer.println('@' . tweet['user']['screen_name'])
+  printer.println('@' + tweet['user']['screen_name'])
   printer.doubleHeightOff()
 
   printer.underlineOn()
