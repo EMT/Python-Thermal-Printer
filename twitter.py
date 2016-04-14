@@ -90,7 +90,7 @@ token = issueRequestAndDecodeResponse(
 
 data = issueRequestAndDecodeResponse(
   'GET',
-  (searchUrl + 'count=1&since_id=%s&q=%s' %
+  (searchUrl + 'count=3&since_id=%s&q=%s' %
    (lastId, urllib.quote(queryString))),
   None,
   {'Host'            : host,
@@ -117,7 +117,7 @@ for tweet in data['statuses']:
   # Remove HTML escape sequences
   # and remap Unicode values to nearest ASCII equivalents
   #
-  printer.println(reversed_string(unidecode(HTMLParser.HTMLParser().unescape(tweet['text']))))
+  printer.println(runidecode(HTMLParser.HTMLParser().unescape(tweet['text'])))
 
   printer.underlineOn()
   printer.println(tweet['created_at'])
