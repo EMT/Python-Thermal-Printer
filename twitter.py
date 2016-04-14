@@ -108,7 +108,7 @@ for tweet in data['statuses']:
   printer.inverseOn()
   printer.doubleHeightOn()
   printer.justify('C')
-  printer.print(' ' + '{:<31}'.format(tweet['user']['screen_name']) + ':')
+  printer.println(' ' + '{:<31}'.format(tweet['user']['screen_name']) + ':')
   printer.inverseOff()
   printer.doubleHeightOff()
   printer.justify('L')
