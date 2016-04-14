@@ -105,14 +105,7 @@ maxId = data['search_metadata']['max_id_str']
 
 for tweet in data['statuses']:
   printer.upsideDownOn()
-  printer.doubleHeightOn()
   printer.justify('C')
-  printer.println('@' + tweet['user']['screen_name'])
-  printer.doubleHeightOff()
-
-  printer.underlineOn()
-  printer.println(tweet['created_at'])
-  printer.underlineOff()
 
   # max_id_str is not always present, so check tweet IDs as fallback
   id = tweet['id_str']
@@ -122,7 +115,16 @@ for tweet in data['statuses']:
   # and remap Unicode values to nearest ASCII equivalents
   printer.println(unidecode(HTMLParser.HTMLParser().unescape(tweet['text'])))
 
+  printer.underlineOn()
+  printer.println(tweet['created_at'])
+  printer.underlineOff()
+
+  printer.doubleHeightOn()
+  printer.println('@' + tweet['user']['screen_name'])
+  printer.doubleHeightOff()
+
   printer.upsideDownOff()
+  printer.justify('L')
 
   printer.feed(3)
 
