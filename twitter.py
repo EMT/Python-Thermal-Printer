@@ -90,7 +90,7 @@ token = issueRequestAndDecodeResponse(
 
 data = issueRequestAndDecodeResponse(
   'GET',
-  (searchUrl + 'count=3&since_id=%s&q=%s' %
+  (searchUrl + 'count=1&since_id=%s&q=%s' %
    (lastId, urllib.quote(queryString))),
   None,
   {'Host'            : host,
@@ -100,6 +100,9 @@ data = issueRequestAndDecodeResponse(
 
 
 # Display results. ---------------------------------------------------------
+
+def reversed_string(a_string):
+    return " ".join(a_string.split()[::-1])
 
 maxId = data['search_metadata']['max_id_str']
 
@@ -113,7 +116,8 @@ for tweet in data['statuses']:
 
   # Remove HTML escape sequences
   # and remap Unicode values to nearest ASCII equivalents
-  printer.println(unidecode(HTMLParser.HTMLParser().unescape(tweet['text'])))
+  #
+  printer.println(reversed_string(unidecode(HTMLParser.HTMLParser().unescape(tweet['text']))))
 
   printer.underlineOn()
   printer.println(tweet['created_at'])
