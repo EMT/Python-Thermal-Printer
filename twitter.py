@@ -104,7 +104,7 @@ data = issueRequestAndDecodeResponse(
 maxId = data['search_metadata']['max_id_str']
 
 for tweet in data['statuses']:
-
+  printer.upsideDownOn()
   printer.doubleHeightOn()
   printer.justify('C')
   printer.println('@' + tweet['user']['screen_name'])
@@ -121,6 +121,8 @@ for tweet in data['statuses']:
   # Remove HTML escape sequences
   # and remap Unicode values to nearest ASCII equivalents
   printer.println(unidecode(HTMLParser.HTMLParser().unescape(tweet['text'])))
+
+  printer.upsideDownOff()
 
   printer.feed(3)
 
